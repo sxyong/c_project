@@ -1,6 +1,7 @@
 #include <ctype.h>
+#include <stdlib.h>
 #include <stdint.h>
-#include "hex2asi.h"
+#include "hex2asii.h"
 
 uint8_t hex_to_asii(uint8_t var)
 {
@@ -58,10 +59,10 @@ int asii2hex(const char* asii_buf, int asii_len, char* hex_buf, int hex_len)
 	if(hex_len < asii_len/2)
 		return -2;
 
-	for(int i=0;i<asii_len;i+=2)
+	for(int i=0;i<asii_len;i++)
 	{
-		uint8_t c1 = asii_to_hex(asii_buf[i]);
-		uint8_t c2 = asii_to_hex(asii_buf[i+1]);
+		uint8_t c1 = asii_to_hex(asii_buf[2*i]);
+		uint8_t c2 = asii_to_hex(asii_buf[2*i+1]);
 
 		hex_buf[i] = (c1<<4) | c2;
 	}
